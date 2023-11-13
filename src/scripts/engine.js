@@ -35,12 +35,19 @@ for(let i = 0; i < emojis.length; i++ ){
 }
 
 function handleClick() {
-    if(openCards.length == 0){
-       this.classList.add("boxOpen");
-       openCards.push(this); 
-    } else if(openCards.length == 1 && openCards[0].id != this.id){
-        openCards.push(this);
-    } else if(openCards.length == 2){
+    if(!this.classList.contains("boxMatch")){
+        if (openCards.length == 0) {
+            this.classList.add("boxOpen");
+            openCards.push(this);
+        } else if (openCards.length == 1) {
+            if (openCards[0].id != this.id) {
+                this.classList.add("boxOpen");
+                openCards.push(this);
+            }
+        }
+    }
+    
+    if(openCards.length == 2){
         setTimeout(checkMatch, 500);
     }
 }
